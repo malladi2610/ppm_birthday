@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <!-- Load A-Frame and AR.js libraries -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js@2.2.2/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body>
+    <!-- Set up the AR scene -->
+    <a-scene arjs="trackingMethod: best;">
+      <!-- Video entity that users can place -->
+      <a-entity arjs-anchor="type: plane;">
+        <a-video src="./assests/VID-20250308-WA0000.mp4" width="1" height="0.5625" autoplay></a-video>
+      </a-entity>
+      <!-- Camera for AR -->
+      <a-entity camera-static></a-entity>
+    </a-scene>
+  </body>
+</html>
