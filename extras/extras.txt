@@ -1,5 +1,3 @@
-
-
 <html>
   <head>
     <!-- Load A-Frame and AR.js libraries -->
@@ -8,11 +6,13 @@
   </head>
   <body>
     <!-- Set up the AR scene -->
-    <a-scene vr-mode-ui="enabled: false" arjs="trackingMethod: best;">
-      <!-- Video entity at a fixed position -->
-      <a-video src="./assets/VID-20250308-WA0000.mp4" width="1" height="0.5625" position="0 0 -3" autoplay muted></a-video>
+    <a-scene arjs="trackingMethod: best;">
+      <!-- Video entity that users can place -->
+      <a-entity arjs-anchor="type: plane;">
+        <a-video src="./assests/VID-20250308-WA0000.mp4" width="1" height="0.5625" autoplay></a-video>
+      </a-entity>
       <!-- Camera for AR -->
-      <a-camera></a-camera>
+      <a-entity camera-static></a-entity>
     </a-scene>
   </body>
 </html>
