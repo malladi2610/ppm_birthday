@@ -1,18 +1,35 @@
 
-
 <html>
   <head>
     <!-- Load A-Frame and AR.js libraries -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js@2.2.2/aframe/build/aframe-ar.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
   </head>
   <body>
     <!-- Set up the AR scene -->
     <a-scene vr-mode-ui="enabled: false" arjs="trackingMethod: best;">
-      <!-- Video entity at a fixed position -->
-      <a-video src="./assets/VID-20250308-WA0000.mp4" width="1" height="0.5625" position="0 0 -3" autoplay muted></a-video>
+      <!-- Video entity with an ID for scripting -->
+      <a-video id="myVideo" src="./assets/VID-20250308-WA0000.mp4" width="1" height="0.5625" position="0 0 -3" autoplay></a-video>
       <!-- Camera for AR -->
       <a-camera></a-camera>
     </a-scene>
+
+    <!-- Script to play video on user tap/click -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('myVideo');
+        const scene = document.querySelector('a-scene');
+
+        // Wait for the scene to load
+        scene.addEventListener('loaded', function() {
+          // Play video on first user interaction (tap or click)
+          document.body.addEventListener('click', function playVideo() {
+            video.play();
+            // Remove the event listener after playing to avoid repeated triggers
+            document.body.removeEventListener('click', playVideo);
+          }, { once: true });
+        });
+      });
+    </script>
   </body>
 </html>
